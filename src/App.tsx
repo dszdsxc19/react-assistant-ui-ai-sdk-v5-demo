@@ -42,14 +42,15 @@ const CalculatorTool = makeAssistantTool({
         <span
           className={`
             ml-2 px-4 py-1.5 rounded-lg font-bold text-lg
-            ${isLoading
-              ? "bg-violet-300 dark:bg-violet-700 text-violet-100 dark:text-violet-300 animate-pulse"
-              : "bg-gradient-to-r from-violet-500 to-purple-500 text-white shadow-lg shadow-violet-500/30"
+            ${
+              isLoading
+                ? "bg-violet-300 dark:bg-violet-700 text-violet-100 dark:text-violet-300 animate-pulse"
+                : "bg-gradient-to-r from-violet-500 to-purple-500 text-white shadow-lg shadow-violet-500/30"
             }
             transition-all duration-300
           `}
         >
-          {isLoading ? "..." : (result?.sum ?? "—")}
+          {isLoading ? "..." : result?.sum ?? "—"}
         </span>
       </div>
     );
@@ -59,7 +60,9 @@ const CalculatorTool = makeAssistantTool({
 export default function App() {
   const runtime = useChatRuntime({
     transport: new AssistantChatTransport({
-      api: "/api/chat",
+      api:
+        import.meta.env.VITE_MASTRA_URL ||
+        "http://localhost:4111/agent/weatherAgent",
     }),
   });
   return (
