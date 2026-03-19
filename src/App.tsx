@@ -50,7 +50,7 @@ const CalculatorTool = makeAssistantTool({
             transition-all duration-300
           `}
         >
-          {isLoading ? "..." : result?.sum ?? "—"}
+          {isLoading ? "..." : (result?.sum ?? "—")}
         </span>
       </div>
     );
